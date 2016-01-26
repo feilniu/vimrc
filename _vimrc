@@ -1,6 +1,6 @@
 " Description: MY vimrc for Linux/Windows, GUI/Console
 " Author: Niu, Feilong Francis
-" Last Change: 2015-08-05 14:22:49
+" Last Change: 2016-01-26 16:05:37
 
 " Global variables {{{
 if has('win32')
@@ -146,6 +146,7 @@ if has('gui_running')
   endfunction "}}}
   call SetFontSize('0')
 elseif &term == 'xterm'
+  colorscheme desert256
   set t_Co=256
 endif
 "}}}
