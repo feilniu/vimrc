@@ -1,6 +1,6 @@
 " Description: MY vimrc for Linux/Windows, GUI/Console
 " Author: Niu, Feilong Francis
-" Last Change: 2016-01-26 16:05:37
+" Last Change: 2016-01-27 10:47:47
 
 " Global variables {{{
 if has('win32')
@@ -46,7 +46,9 @@ set virtualedit=block
 set showcmd
 set showmatch
 set wildmenu
-set autochdir
+if exists("+autochdir")
+  set autochdir
+endif
 
 " Layout & indent
 set nowrap
@@ -78,7 +80,9 @@ set lazyredraw
 set list
 set listchars=tab:\|\ ,trail:-,nbsp:_
 set scrolloff=5
-set foldcolumn=2
+if has('folding')
+  set foldcolumn=2
+endif
 
 " File
 set noswapfile
@@ -252,6 +256,7 @@ vmap <silent> // y/<C-R>=escape(@",'\\/.*^$~[]')<CR><CR>
 "}}}
 
 " Commands {{{
+command! NOI setl nosi noai
 command! -nargs=? FT setl ft=<args>
 command! -nargs=1 TS setl ts=<args> sw=<args>
 command! -nargs=1 TSI setl ts=<args> sw=<args> fdm=indent
