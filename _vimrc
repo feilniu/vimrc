@@ -1,6 +1,6 @@
 " Description: MY vimrc for Linux/Windows, GUI/Console
 " Author: Niu, Feilong Francis
-" Last Change: 2016-01-27 10:47:47
+" Last Change: 2016-01-28 15:34:15
 
 " Global variables {{{
 if has('win32')
@@ -46,9 +46,6 @@ set virtualedit=block
 set showcmd
 set showmatch
 set wildmenu
-if exists("+autochdir")
-  set autochdir
-endif
 
 " Layout & indent
 set nowrap
@@ -62,7 +59,7 @@ set expandtab
 set smarttab
 
 " Display
-set shortmess=atI
+set shortmess=at
 set number
 set statusline=%f\ %m%r[%{strftime('%Y%m%d',getftime(expand('%')))}]%=%{GetFileEditSetting()}\ %-21(%11(%l/%L%),%-3v\ %P%)
 function! GetFileEditSetting() "{{{
@@ -211,8 +208,6 @@ nmap <A-Left> zH
 nmap <A-Right> zL
 nmap <C-Tab> gt
 nmap <C-S-Tab> gT
-nmap <F1> :e $VIMRC<CR>
-nmap <C-F1> :so $VIMRC<CR>
 nmap <F2> :bp<CR>
 nmap <F3> :bn<CR>
 nmap <F4> :ls<CR>
@@ -256,7 +251,9 @@ vmap <silent> // y/<C-R>=escape(@",'\\/.*^$~[]')<CR><CR>
 "}}}
 
 " Commands {{{
-command! NOI setl nosi noai
+command! EVIMRC e $VIMRC
+command! SOVIMRC so $VIMRC
+command! CDC cd %:p:h
 command! -nargs=? FT setl ft=<args>
 command! -nargs=1 TS setl ts=<args> sw=<args>
 command! -nargs=1 TSI setl ts=<args> sw=<args> fdm=indent
