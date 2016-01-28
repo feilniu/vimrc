@@ -1,6 +1,6 @@
 " Description: MY vimrc for Linux/Windows, GUI/Console
 " Author: Niu, Feilong Francis
-" Last Change: 2016-01-28 15:34:15
+" Last Change: 2016-01-28 16:09:24
 
 " Global variables {{{
 if has('win32')
@@ -59,7 +59,7 @@ set expandtab
 set smarttab
 
 " Display
-set shortmess=at
+set shortmess=atI
 set number
 set statusline=%f\ %m%r[%{strftime('%Y%m%d',getftime(expand('%')))}]%=%{GetFileEditSetting()}\ %-21(%11(%l/%L%),%-3v\ %P%)
 function! GetFileEditSetting() "{{{
