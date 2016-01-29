@@ -1,6 +1,6 @@
 " Description: MY vimrc for Linux/Windows, GUI/Console
 " Author: Niu, Feilong Francis
-" Last Change: 2016-01-28 16:09:24
+" Last Change: 2016-01-29 14:11:37
 
 " Global variables {{{
 if has('win32')
@@ -143,6 +143,8 @@ if has('gui_running')
     if g:my_os == 'Windows'
       let fontstr = 'Courier_New:h' . w:my_fontsize
       exec 'set gfn=' . fontstr
+      "let widefontstr = 'SimHei:h' . w:my_fontsize
+      "exec 'set gfw=' . widefontstr
     endif
   endfunction "}}}
   call SetFontSize('0')
@@ -274,6 +276,8 @@ command! -range=% FormatJSON <line1>,<line2>!python -m json.tool
 au BufReadPost *.txt if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 " filetype settings
 au BufNewFile,BufRead *.txt setl filetype=txt wrap
+au BufNewFile,BufRead *.py2,*.pyw2 setl filetype=python
+au BufNewFile,BufRead *.cue setl filetype=cue et ts=2 sw=2
 au BufNewFile,BufRead *.cmd,*.sh,*.vim setl et ts=2 sw=2
 au BufNewFile,BufRead *.dtsConfig,*.rdl setl et ts=2 sw=2
 au BufNewFile,BufRead *.xml,*web.config setl noet
@@ -283,7 +287,7 @@ au FileType vim,python,perl,sh,cs setl noic
 au FileType sql setl noet nosi ar
 au FileType html,xhtml,javascript setl noet nosi
 au BufNewFile,BufRead *.json setl et ts=2 sw=2
-au BufWritePre,FileWritePre *.sql,*.cmd,*.tab if &bomb == 0 | setl fenc=cp936 ff=dos | endif
+au BufWritePre,FileWritePre *.cmd,*.tab if &bomb == 0 | setl fenc=cp936 ff=dos | endif
 " timestamp
 au BufWritePre,FileWritePre *vimrc,*.vim,*.ahk call SetTimeStamp()
 function! SetTimeStamp() "{{{
