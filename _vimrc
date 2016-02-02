@@ -1,6 +1,6 @@
 " Description: MY vimrc for Linux/Windows, GUI/Console
 " Author: Niu, Feilong Francis
-" Last Change: 2016-01-29 14:11:37
+" Last Change: 2016-02-02 10:02:47
 
 " Global variables {{{
 if has('win32')
@@ -283,6 +283,7 @@ au BufNewFile,BufRead *.dtsConfig,*.rdl setl et ts=2 sw=2
 au BufNewFile,BufRead *.xml,*web.config setl noet
 au BufNewFile,BufRead *.ctl setl filetype=conf
 au BufNewFile,BufRead *.cwiki setl filetype=confluencewiki
+au BufNewFile,BufRead *.sgf setl filetype=sgf
 au FileType vim,python,perl,sh,cs setl noic
 au FileType sql setl noet nosi ar
 au FileType html,xhtml,javascript setl noet nosi
