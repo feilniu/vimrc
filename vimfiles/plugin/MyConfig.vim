@@ -1,7 +1,7 @@
 " File: MyConfig.vim
 " Description: My Config
 " Author: Feil <feilniu AT gmail DOT com>
-" Last Change: 2014-08-16 01:06:28
+" Last Change: 2016-02-03 23:07:04
 
 " My plugins {{{
 " TOhtml
@@ -18,6 +18,31 @@ let g:sql_type_default = 'sqlserver'
 command! Etxt :e $VIM/vimfiles/syntax/txt.vim
 command! EMyConfig :e $VIM/vimfiles/plugin/MyConfig.vim
 command! EMyConfigAfter :e $VIM/vimfiles/after/plugin/MyConfigAfter.vim
+nmap <Leader>yd /^\(134\\|135\\|136\\|137\\|138\\|139\\|147\\|150\\|151\\|152\\|157\\|158\\|159\\|178\\|182\\|183\\|184\\|187\\|188\)<CR>
+" }}}
+
+" Clear KFCIDs in Excel {{{
+command ClearKFCID :call s:ClearKFCID()
+nmap <unique> <Leader>ck :call <SID>ClearKFCID()<CR>
+function s:ClearKFCID()
+  %s/\D//ge
+  g/^$/d
+  sort nu
+  %s/\d\+/UNION ALL SELECT \0/e
+  1s/^UNION ALL SELECT /SELECT KFCID = /e
+endfunction
+" }}}
+
+" Clear Phones {{{
+command ClearPhone :call s:ClearPhone()
+nmap <unique> <Leader>cp :call <SID>ClearPhone()<CR>
+function s:ClearPhone()
+  %s/\D//ge
+  g/^$/d
+  sort nu
+  %s/\d\+/UNION ALL SELECT '\0'/e
+  1s/^UNION ALL SELECT /SELECT Phone = /e
+endfunction
 " }}}
 
 " Unescape URL {{{

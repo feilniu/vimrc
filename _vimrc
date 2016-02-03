@@ -1,6 +1,6 @@
 " Description: MY vimrc for Linux/Windows, GUI/Console
-" Author: Feil <feilniu AT gmail DOT com>
-" Last Change: 2015-11-07 18:43:34
+" Author: Niu, Feilong Francis
+" Last Change: 2016-02-02 10:02:47
 
 " Global variables {{{
 if has('win32')
@@ -46,7 +46,6 @@ set virtualedit=block
 set showcmd
 set showmatch
 set wildmenu
-set autochdir
 
 " Layout & indent
 set nowrap
@@ -62,11 +61,7 @@ set smarttab
 " Display
 set shortmess=atI
 set number
-if &diff == 0
-  set statusline=%f\ %m%r[%{strftime('%Y%m%d',getftime(expand('%')))}]\|%-.50{getcwd()}%=%{GetFileEditSetting()}\ %-21(%11(%l/%L%),%-3v\ %P%)
-else
-  set statusline=%f\ %m%r[%{strftime('%Y%m%d',getftime(expand('%')))}]%{GetFileSetting()}
-endif
+set statusline=%f\ %m%r[%{strftime('%Y%m%d',getftime(expand('%')))}]%=%{GetFileEditSetting()}\ %-21(%11(%l/%L%),%-3v\ %P%)
 function! GetFileEditSetting() "{{{
   let misc = (&ar ? 'ar' : '')
   let fencstr = (&fenc == '' ? &enc : &fenc) . (&bomb ? '.BOM' : '')
@@ -77,16 +72,14 @@ function! GetFileEditSetting() "{{{
         \ (&ic ? (&scs ? 'S' : 'I') : 'C')
   return misc . '[' . fencstr . ',' . strpart(&ff,0,1) . '][' . ftstr . ',' . textmode . ']'
 endfunction "}}}
-function! GetFileSetting() "{{{
-  let fencstr = (&fenc == '' ? &enc : &fenc) . (&bomb ? '.BOM' : '')
-  return '[' . fencstr . ',' . strpart(&ff,0,1) . ']'
-endfunction "}}}
 set laststatus=2
 set lazyredraw
 set list
 set listchars=tab:\|\ ,trail:-,nbsp:_
 set scrolloff=5
-set foldcolumn=2
+if has('folding')
+  set foldcolumn=2
+endif
 
 " File
 set noswapfile
@@ -112,21 +105,21 @@ if has('gui_running')
   nmap <silent> <F8> :if &go =~# 'r' <Bar> set go-=r <Bar> else <Bar> set go+=r <Bar> endif<CR>
   source $VIMRUNTIME\delmenu.vim
   source $VIMRUNTIME\menu.vim
-  set lines=36 columns=120
+  set lines=40 columns=120
   nmap <C-\> :call ToggleFullScreen()<CR>
   function! ToggleFullScreen() "{{{
-    if &lines == 36 && &columns == 120
+    if &lines == 40 && &columns == 120
       simalt ~x
     else
-      set lines=36 columns=120
+      set lines=40 columns=120
     endif
   endfunction "}}}
   nmap <A-\> :call ToggleWindowSize()<CR>
   function! ToggleWindowSize() "{{{
-    if &lines == 36 && &columns == 120
-      set lines=40 columns=100
+    if &lines == 40 && &columns == 120
+      set lines=50 columns=100
     else
-      set lines=36 columns=120
+      set lines=40 columns=120
     endif
   endfunction "}}}
   nmap <C-Up> :call SetFontSize('+')<CR>
@@ -150,10 +143,13 @@ if has('gui_running')
     if g:my_os == 'Windows'
       let fontstr = 'Courier_New:h' . w:my_fontsize
       exec 'set gfn=' . fontstr
+      "let widefontstr = 'SimHei:h' . w:my_fontsize
+      "exec 'set gfw=' . widefontstr
     endif
   endfunction "}}}
   call SetFontSize('0')
 elseif &term == 'xterm'
+  colorscheme desert256
   set t_Co=256
 endif
 "}}}
@@ -214,14 +210,12 @@ nmap <A-Left> zH
 nmap <A-Right> zL
 nmap <C-Tab> gt
 nmap <C-S-Tab> gT
-nmap <F1> :e $VIMRC<CR>
-nmap <C-F1> :so $VIMRC<CR>
 nmap <F2> :bp<CR>
 nmap <F3> :bn<CR>
 nmap <F4> :ls<CR>
 nmap <F9> :setl filetype=sql<CR>
 nmap <F10> :setl filetype=dosbatch<CR>
-nmap <F11> :setl filetype=xml<CR>
+nmap <F11> :setl filetype=confluencewiki<CR>
 nmap <F12> :setl wrap!<CR>
 nmap <Leader>dt :diffthis<CR>
 nmap <Leader>du :diffupdate<CR>
@@ -259,6 +253,9 @@ vmap <silent> // y/<C-R>=escape(@",'\\/.*^$~[]')<CR><CR>
 "}}}
 
 " Commands {{{
+command! EVIMRC e $VIMRC
+command! SOVIMRC so $VIMRC
+command! CDC cd %:p:h
 command! -nargs=? FT setl ft=<args>
 command! -nargs=1 TS setl ts=<args> sw=<args>
 command! -nargs=1 TSI setl ts=<args> sw=<args> fdm=indent
@@ -276,7 +273,7 @@ command! -range=% FormatJSON <line1>,<line2>!python -m json.tool
 
 " Autocmds {{{
 " last-position-jump
-au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+au BufReadPost *.txt if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 " filetype settings
 au BufNewFile,BufRead *.txt setl filetype=txt wrap
 au BufNewFile,BufRead *.py2,*.pyw2 setl filetype=python
@@ -284,10 +281,14 @@ au BufNewFile,BufRead *.cue setl filetype=cue et ts=2 sw=2
 au BufNewFile,BufRead *.cmd,*.sh,*.vim setl et ts=2 sw=2
 au BufNewFile,BufRead *.dtsConfig,*.rdl setl et ts=2 sw=2
 au BufNewFile,BufRead *.xml,*web.config setl noet
+au BufNewFile,BufRead *.ctl setl filetype=conf
+au BufNewFile,BufRead *.cwiki setl filetype=confluencewiki
+au BufNewFile,BufRead *.sgf setl filetype=sgf
 au FileType vim,python,perl,sh,cs setl noic
 au FileType sql setl noet nosi ar
 au FileType html,xhtml,javascript setl noet nosi
-au BufWritePre,FileWritePre *.sql,*.cmd,*.tab if &bomb == 0 | setl fenc=cp936 ff=dos | endif
+au BufNewFile,BufRead *.json setl et ts=2 sw=2
+au BufWritePre,FileWritePre *.cmd,*.tab if &bomb == 0 | setl fenc=cp936 ff=dos | endif
 " timestamp
 au BufWritePre,FileWritePre *vimrc,*.vim,*.ahk call SetTimeStamp()
 function! SetTimeStamp() "{{{
@@ -302,7 +303,7 @@ endfunction "}}}
 " Compatibility {{{
 if v:version >= 703
   set cryptmethod=blowfish
-  nmap <silent> <Leader>rn :setl rnu!<CR>
+  nmap <Leader>rn :setl rnu!<CR>
 endif
 "}}}
 
