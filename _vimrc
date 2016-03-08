@@ -1,6 +1,6 @@
 " Description: MY vimrc for Linux/Windows, GUI/Console
 " Author: Niu, Feilong Francis
-" Last Change: 2016-02-02 10:02:47
+" Last Change: 2016-03-03 13:49:15
 
 " Global variables {{{
 if has('win32')
@@ -275,7 +275,7 @@ command! -range=% FormatJSON <line1>,<line2>!python -m json.tool
 " last-position-jump
 au BufReadPost *.txt if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 " filetype settings
-au BufNewFile,BufRead *.txt setl filetype=txt wrap
+au BufNewFile,BufRead *.txt setl filetype=txt wrap fdm=marker cms=
 au BufNewFile,BufRead *.py2,*.pyw2 setl filetype=python
 au BufNewFile,BufRead *.cue setl filetype=cue et ts=2 sw=2
 au BufNewFile,BufRead *.cmd,*.sh,*.vim setl et ts=2 sw=2
