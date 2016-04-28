@@ -2,7 +2,7 @@
 " Description: plain text syntax file
 " Language: text/plain :)
 " Author: Feil <feilniu AT gmail DOT com>
-" Last Change: 2016-02-03 23:07:35
+" Last Change: 2016-04-28 10:53:42
 
 scriptencoding utf-8
 
@@ -22,7 +22,7 @@ syn match txtEPM '[~\-_+*<>\[\]{}=|#@$%&\\/:&\^\.,!?'"]'
 syn match txtCPM '[，。；：！？、《》【】“”‘’（）『』「」〖〗﹝﹞〔〕〈〉…￥·■◆▲●★□◇△○☆＄‰￥℃※±⑴⑵⑶⑷⑸⑹⑺⑻⑼⑽⑾⑿⒀⒁⒂⒃⒄⒅⒆⒇⒈⒉⒊⒋⒌⒍⒎⒏⒐⒑⒒⒓⒔⒕⒖⒗⒘⒙⒚⒛①②③④⑤⑥⑦⑧⑨⑩㈠㈡㈢㈣㈤㈥㈦㈧㈨㈩→←↑↓§№◎ⅠⅡⅢⅣⅤⅥⅦⅧⅨⅩⅪⅫ≈≡≠＝≤≥＜＞≮≯∷±＋－×÷／∫∮∝∞∧∨∑∏∪∩∈∵∴⊥∥∠⌒⊙≌∽√°¤￠〇]'
 
 syn match txtNumber '\d\+\(\.\d\+\)\='
-syn match txtLink '\<\w\+://\(\w\|[-&=,?:./]\)\+'
+syn match txtLink '\<\w\+://\(\w\|[-&=,?:./*%]\)\+'
 
 syn cluster txtTagsContains contains=txtNumber,txtEPM,txtCPM,txtLink
 syn match txtTags '<[^>]*>'   contains=@txtTagsContains
