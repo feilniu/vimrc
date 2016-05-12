@@ -1,6 +1,6 @@
 " Description: MY vimrc for Linux/Windows, GUI/Console
 " Author: Niu, Feilong Francis
-" Last Change: 2016-03-03 13:49:15
+" Last Change: 2016-05-12 13:31:13
 
 " Global variables {{{
 if has('win32')
@@ -46,6 +46,7 @@ set virtualedit=block
 set showcmd
 set showmatch
 set wildmenu
+set autochdir
 
 " Layout & indent
 set nowrap
@@ -288,7 +289,7 @@ au FileType vim,python,perl,sh,cs setl noic
 au FileType sql setl noet nosi ar
 au FileType html,xhtml,javascript setl noet nosi
 au BufNewFile,BufRead *.json setl et ts=2 sw=2
-au BufWritePre,FileWritePre *.cmd,*.tab if &bomb == 0 | setl fenc=cp936 ff=dos | endif
+au BufWritePre,FileWritePre *.cmd,*.bat,*.sql,*.tab if &bomb == 0 | setl fenc=cp936 ff=dos | endif
 " timestamp
 au BufWritePre,FileWritePre *vimrc,*.vim,*.ahk call SetTimeStamp()
 function! SetTimeStamp() "{{{
