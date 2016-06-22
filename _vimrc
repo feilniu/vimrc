@@ -1,6 +1,6 @@
 " Description: MY vimrc for Linux/Windows, GUI/Console
 " Author: Niu, Feilong Francis
-" Last Change: 2016-06-17 23:47:49
+" Last Change: 2016-06-22 22:20:40
 
 " Global variables {{{
 if has('win32')
@@ -250,7 +250,7 @@ nmap <Leader>bm :setl bomb!<CR>
 nmap <Leader>fd :setl ff=dos<CR>
 nmap <Leader>fu :setl ff=unix<CR>
 nmap <Leader>mp /1[34578]\d\{9}<CR>
-vmap <silent> // y/<C-R>=escape(@",'\\/.*^$~[]')<CR><CR>
+vmap <silent> // y/<C-R>=substitute(escape(@",'\\/.*^$~[]'),'\n','\\n','g')<CR><CR>
 "}}}
 
 " Commands {{{
