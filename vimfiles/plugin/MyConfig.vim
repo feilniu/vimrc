@@ -1,7 +1,7 @@
 " File: MyConfig.vim
 " Description: My Config
 " Author: Feil <feilniu AT gmail DOT com>
-" Last Change: 2016-02-03 23:07:04
+" Last Change: 2016-06-18 23:39:58
 
 " My plugins {{{
 " TOhtml
@@ -62,6 +62,15 @@ endfunction
 " 全半角转换 {{{
 command -range=% Full2Half :<line1>,<line2>s/[！-～]/\=nr2char(char2nr(submatch(0))-65248)/ge
 command -range=% Half2Full :<line1>,<line2>s/[!-~]/\=nr2char(char2nr(submatch(0))+65248)/ge
+" }}}
+
+" Note {{{
+command Kindle2DoubanNote :call s:Kindle2DoubanNote()
+function s:Kindle2DoubanNote()
+  %s#==========#</原文结束>\r<原文开始>#
+  %s/- 您在位置 //
+  %s/的标注 | 添加于.*$//
+endfunction
 " }}}
 
 " vim:fdm=marker:
