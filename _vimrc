@@ -287,6 +287,7 @@ au BufNewFile,BufRead *.xml,*web.config setl noet
 au BufNewFile,BufRead *.ctl setl filetype=conf
 au BufNewFile,BufRead *.cwiki setl filetype=confluencewiki
 au BufNewFile,BufRead *.sgf setl filetype=sgf
+au BufNewFile,BufRead *.md setl filetype=markdown
 au FileType vim,python,perl,sh,cs setl noic
 au FileType sql setl noet nosi ar
 au FileType html,xhtml,javascript setl noet nosi
