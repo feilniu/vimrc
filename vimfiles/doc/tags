@@ -90,6 +90,7 @@
 :RIDMY	visincr.txt	/*:RIDMY*
 :RIPOW	visincr.txt	/*:RIPOW*
 :RM	visincr.txt	/*:RM*
+:Tabularize	Tabular.txt	/*:Tabularize*
 <C-y>,	emmet.txt	/*<C-y>,*
 <C-y>/	emmet.txt	/*<C-y>\/*
 <C-y>A	emmet.txt	/*<C-y>A*
@@ -112,6 +113,7 @@ IDMY	visincr.txt	/*IDMY*
 IMDY	visincr.txt	/*IMDY*
 IYMD	visincr.txt	/*IYMD*
 ResetCtrlP	ctrlp.txt	/*ResetCtrlP*
+Tabular.txt	Tabular.txt	/*Tabular.txt*
 cS	surround.txt	/*cS*
 cs	surround.txt	/*cs*
 ctrlp-changelog	ctrlp.txt	/*ctrlp-changelog*
@@ -230,6 +232,12 @@ surround-mappings	surround.txt	/*surround-mappings*
 surround-replacements	surround.txt	/*surround-replacements*
 surround-targets	surround.txt	/*surround-targets*
 surround.txt	surround.txt	/*surround.txt*
+tabular	Tabular.txt	/*tabular*
+tabular-intro	Tabular.txt	/*tabular-intro*
+tabular-scripting	Tabular.txt	/*tabular-scripting*
+tabular-toc	Tabular.txt	/*tabular-toc*
+tabular-walkthrough	Tabular.txt	/*tabular-walkthrough*
+tabular.vim	Tabular.txt	/*tabular.vim*
 vS	surround.txt	/*vS*
 v_<C-y>,	emmet.txt	/*v_<C-y>,*
 vgS	surround.txt	/*vgS*

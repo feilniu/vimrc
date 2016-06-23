@@ -1,6 +1,6 @@
 " Description: MY vimrc for Linux/Windows, GUI/Console
 " Author: Niu, Feilong Francis
-" Last Change: 2016-06-08 13:46:51
+" Last Change: 2016-06-23 09:32:16
 
 " Global variables {{{
 if has('win32')
@@ -204,6 +204,8 @@ endif
 "}}}
 
 " Key-mappings {{{
+noremap <expr> j (v:count == 0 ? 'gj' : 'j')
+noremap <expr> k (v:count == 0 ? 'gk' : 'k')
 nmap <ESC><ESC> :noh<CR>
 nmap <A-Up> [c
 nmap <A-Down> ]c
