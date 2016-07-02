@@ -1,6 +1,6 @@
 " Description: MY vimrc for Linux/Windows, GUI/Console
 " Author: Niu, Feilong Francis
-" Last Change: 2016-06-23 09:32:16
+" Last Change: 2016-07-02 23:28:46
 
 " Global variables {{{
 if has('win32')
@@ -218,7 +218,7 @@ nmap <F3> :bn<CR>
 nmap <F4> :ls<CR>
 nmap <F9> :setl filetype=sql<CR>
 nmap <F10> :setl filetype=dosbatch<CR>
-nmap <F11> :setl filetype=confluencewiki<CR>
+nmap <F11> :let &ft = (&ft == 'txt' ? 'markdown' : 'txt')<CR>
 nmap <F12> :setl wrap!<CR>
 nmap <Leader>dt :diffthis<CR>
 nmap <Leader>du :diffupdate<CR>
