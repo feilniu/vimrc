@@ -1,6 +1,6 @@
 " Description: MY vimrc for Linux/Windows, GUI/Console
 " Author: Niu, Feilong Francis
-" Last Change: 2016-06-23 09:32:16
+" Last Change: 2016-07-06 15:25:38
 
 " Global variables {{{
 if has('win32')
@@ -22,6 +22,7 @@ let $TEMPLATE = g:my_template
 " General settings {{{
 set nocompatible
 map Q :qa<CR>
+execute pathogen#infect()
 filetype plugin indent on
 syntax on
 if has('mouse')
