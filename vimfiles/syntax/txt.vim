@@ -2,13 +2,16 @@
 " Description: plain text syntax file
 " Language: text/plain :)
 " Author: Feil <feilniu AT gmail DOT com>
-" Last Change: 2016-04-28 11:04:55
+" Last Change: 2016-07-22 16:13:48
 
 scriptencoding utf-8
 
 if exists("b:current_syntax")
   finish
 endif
+
+" Optional reuse html syntax
+":so $VIMRUNTIME/syntax/html.vim
 
 syn case match
 
@@ -31,7 +34,7 @@ syn match txtTags '\[[^]]*\]' contains=@txtTagsContains
 syn match txtTags '【[^】]*】' contains=@txtTagsContains
 syn match txtTags '〖[^〗]*〗' contains=@txtTagsContains
 
-syn cluster txtCommentContains contains=txtTodo,txtError,txtLink
+syn cluster txtCommentContains contains=txtTodo,txtError,txtDone,txtLink
 syn match  txtComment '\(^\| \)\@<=#.*$'      contains=@txtCommentContains
 syn match  txtComment '\(^\| \)\@<=\/\/.*$'   contains=@txtCommentContains
 syn region txtComment start='\/\*' end='\*\/' contains=@txtCommentContains
